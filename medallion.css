@@ -1,0 +1,840 @@
+:root {
+  --bg: #f6f1e8;
+  --paper: #fffdf9;
+  --surface: #ffffff;
+  --ink: #294937;
+  --line-soft: #efe7da;
+  --accent: #294f38;
+  --accent-2: #ddb566;
+  --muted-seat: #dcdcdc;
+  --shadow: 0 10px 30px rgba(118, 98, 68, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: radial-gradient(circle at top, rgba(250, 246, 239, 0.95), rgba(245, 239, 229, 0.9)), var(--bg);
+  color: #243329;
+  line-height: 1.45;
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.page-shell {
+  width: min(1880px, calc(100% - 28px));
+  margin: 14px auto 28px;
+}
+
+.panel {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(255, 250, 243, 0.98));
+  border: 1px solid rgba(219, 206, 188, 0.9);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.booking-panel {
+  overflow: hidden;
+}
+
+.topbar {
+  display: grid;
+  grid-template-columns: 150px 1fr auto;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 34px 14px;
+  border-bottom: 1px solid rgba(219, 206, 188, 0.85);
+}
+
+.brand img {
+  width: 92px;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(28px, 4vw, 78px);
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.12rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  position: relative;
+}
+
+.hello {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.circle-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid rgba(219, 206, 188, 0.95);
+  background: rgba(255, 252, 246, 0.94);
+  color: var(--ink);
+  display: inline-grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.profile-btn {
+  width: 52px;
+  height: 52px;
+}
+
+.profile-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 170px;
+  background: rgba(255, 252, 246, 0.98);
+  border: 1px solid rgba(224, 215, 202, 0.95);
+  border-radius: 14px;
+  box-shadow: 0 14px 28px rgba(78, 64, 42, 0.12);
+  padding: 8px;
+  z-index: 20;
+}
+
+.profile-menu-item {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  border-radius: 10px;
+  color: var(--ink);
+  text-align: left;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.profile-menu-item:hover {
+  background: rgba(41, 79, 56, 0.08);
+}
+
+.icon,
+.circle-btn svg,
+.search-label svg,
+.tab-btn svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.booking-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 1.2fr);
+  gap: 38px;
+  padding: 28px 34px 22px;
+}
+
+.section-heading h1,
+.date-block h2,
+.seat-section h2,
+.management-title h2 {
+  font-family: "Cormorant Garamond", serif;
+  color: var(--ink);
+}
+
+.section-heading h1 {
+  font-size: clamp(2rem, 2vw, 2.5rem);
+  line-height: 1.1;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.ornament {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 20px;
+}
+
+.ornament span {
+  width: 88px;
+  height: 1px;
+  background: rgba(222, 184, 105, 0.8);
+}
+
+.ornament i {
+  width: 18px;
+  height: 14px;
+  display: block;
+  position: relative;
+}
+
+.ornament i::before,
+.ornament i::after {
+  content: "";
+  position: absolute;
+  background: var(--accent-2);
+}
+
+.ornament i::before {
+  left: 50%;
+  top: 2px;
+  width: 2px;
+  height: 10px;
+  transform: translateX(-50%);
+}
+
+.ornament i::after {
+  left: 2px;
+  right: 2px;
+  top: 5px;
+  height: 2px;
+  border-radius: 999px;
+}
+
+.movie-card {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 26px;
+  margin-top: 22px;
+}
+
+.poster {
+  width: 195px;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(69, 68, 68, 0.12);
+}
+
+.movie-side {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding-top: 10px;
+}
+
+.show-card,
+.selected-card,
+.seat-board,
+.date-card,
+.search-row input,
+.tab-btn,
+.status-badge,
+.seat-pill {
+  border: 1px solid rgba(224, 215, 202, 0.95);
+  box-shadow: 0 6px 18px rgba(86, 73, 49, 0.04);
+}
+
+.show-card {
+  background: rgba(255, 253, 248, 0.92);
+  border-radius: 18px;
+  padding: 22px 26px;
+}
+
+.show-card h2 {
+  font-family: "Cormorant Garamond", serif;
+  color: var(--ink);
+  font-size: clamp(1.8rem, 2vw, 2.7rem);
+  line-height: 1.15;
+}
+
+.meta {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  color: #33493b;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.24rem;
+  font-weight: 600;
+}
+
+.meta-clock svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+}
+
+.dot {
+  color: #7d8a80;
+}
+
+.selected-card {
+  background: rgba(255, 251, 245, 0.94);
+  border-radius: 20px;
+  padding: 18px 26px 22px;
+  width: min(100%, 460px);
+}
+
+.selected-card h3 {
+  font-family: "Cormorant Garamond", serif;
+  color: var(--ink);
+  font-size: 1.95rem;
+}
+
+.seat-count {
+  margin-top: 8px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.selected-seat-tags {
+  display: flex;
+  gap: 14px;
+  margin: 16px 0 18px;
+}
+
+.seat-pill {
+  min-width: 66px;
+  height: 42px;
+  border-radius: 11px;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.price-list {
+  border-top: 1px solid var(--line-soft);
+  border-bottom: 1px solid rgba(205, 190, 168, 0.92);
+  padding: 14px 0 10px;
+}
+
+.price-list div,
+.total-row,
+.actions,
+.search-row,
+.tab-row,
+.seat-layout-wrap,
+.legend div {
+  display: flex;
+  align-items: center;
+}
+
+.price-list div,
+.total-row {
+  justify-content: space-between;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+}
+
+.price-list dd,
+.total-row strong {
+  font-weight: 700;
+}
+
+.total-row {
+  margin-top: 10px;
+  font-size: 1.55rem;
+}
+
+.actions {
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.action-btn {
+  flex: 1;
+  height: 48px;
+  border-radius: 9px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid var(--accent);
+}
+
+.action-btn-secondary {
+  background: var(--paper);
+  color: var(--accent);
+}
+
+.action-btn-primary {
+  background: var(--accent);
+  color: #fbf8f0;
+}
+
+.date-block h2,
+.seat-section h2 {
+  text-align: center;
+  font-size: clamp(2rem, 2.2vw, 2.8rem);
+  margin-top: 4px;
+  margin-bottom: 12px;
+}
+
+.date-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 14px;
+}
+
+.date-card {
+  width: 88px;
+  min-width: 88px;
+  border-radius: 13px;
+  padding: 12px 8px 11px;
+  background: rgba(255, 252, 247, 0.9);
+  color: var(--ink);
+  text-align: center;
+  cursor: pointer;
+}
+
+.date-card span,
+.date-card small {
+  display: block;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.date-card strong {
+  display: block;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2.1rem;
+  line-height: 1.08;
+  margin: 4px 0;
+}
+
+.date-card.active {
+  background: var(--accent);
+  color: #f9f6ee;
+}
+
+.arrow-btn {
+  width: 34px;
+  height: 34px;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.arrow-btn svg {
+  width: 28px;
+  height: 28px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.seat-layout-wrap {
+  justify-content: center;
+  gap: 22px;
+  align-items: center;
+}
+
+.seat-board {
+  width: min(100%, 720px);
+  border-radius: 14px;
+  padding: 20px 18px 16px;
+  background: rgba(255, 253, 248, 0.92);
+}
+
+.stage {
+  width: 172px;
+  margin: 0 auto 8px;
+  border: 1px solid var(--line-soft);
+  border-radius: 7px;
+  text-align: center;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #5b6358;
+  padding: 3px 10px;
+}
+
+.seat-layout {
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr) 14px;
+  gap: 8px;
+  align-items: start;
+}
+
+.seat-labels {
+  display: grid;
+  gap: 7px;
+  padding-top: 1px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 22px;
+  color: #32483a;
+  text-align: center;
+}
+
+.seats {
+  display: grid;
+  grid-template-columns: repeat(16, 21px);
+  grid-auto-rows: 21px;
+  gap: 6px;
+  justify-content: center;
+}
+
+.seat {
+  width: 21px;
+  height: 21px;
+  border: 0;
+  border-radius: 4px;
+  background: var(--accent);
+  cursor: pointer;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.seat:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.seat.selected {
+  background: var(--accent-2);
+}
+
+.seat.unavailable {
+  background: var(--muted-seat);
+  cursor: not-allowed;
+}
+
+.seat.hidden {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.legend {
+  display: grid;
+  gap: 18px;
+  color: #2f4637;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.legend div {
+  gap: 12px;
+}
+
+.legend-box {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.legend-box.available {
+  background: var(--accent);
+}
+
+.legend-box.unavailable {
+  background: var(--muted-seat);
+}
+
+.legend-box.selected {
+  background: var(--accent-2);
+}
+
+.management-panel {
+  margin-top: 22px;
+  padding: 16px 24px 24px;
+}
+
+.management-header {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  align-items: center;
+}
+
+.management-header img {
+  width: 86px;
+}
+
+.management-title {
+  text-align: center;
+  padding-right: 88px;
+}
+
+.management-title h2 {
+  font-size: clamp(2rem, 2.4vw, 3rem);
+  line-height: 1.1;
+}
+
+.management-title .ornament {
+  justify-content: center;
+  margin: 10px 0 0;
+}
+
+.search-row {
+  justify-content: center;
+  gap: 18px;
+  margin-top: 8px;
+}
+
+.search-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #223a2c;
+  font-size: 1.12rem;
+}
+
+.search-row input {
+  width: min(100%, 760px);
+  height: 50px;
+  border-radius: 9px;
+  border: 1px solid rgba(224, 215, 202, 0.95);
+  background: rgba(255, 253, 249, 0.92);
+  padding: 0 18px;
+  color: #24362b;
+}
+
+.search-row input:focus,
+.tab-btn:focus,
+.date-card:focus,
+.seat-pill:focus,
+.action-btn:focus,
+.circle-btn:focus,
+.seat:focus {
+  outline: 2px solid rgba(41, 79, 56, 0.22);
+  outline-offset: 2px;
+}
+
+.tab-row {
+  justify-content: center;
+  gap: 16px;
+  margin: 20px 0 16px;
+}
+
+.tab-btn {
+  min-width: 180px;
+  height: 46px;
+  border-radius: 9px;
+  border: 1px solid rgba(224, 215, 202, 0.95);
+  background: rgba(255, 253, 249, 0.95);
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.18rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.tab-btn.active {
+  background: var(--accent);
+  color: #f6f2e8;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  border-radius: 12px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1180px;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+thead th {
+  background: var(--accent);
+  color: #f9f5ed;
+  padding: 14px 12px;
+  font-size: 0.98rem;
+  font-weight: 600;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+thead th:first-child {
+  border-top-left-radius: 8px;
+}
+
+thead th:last-child {
+  border-top-right-radius: 8px;
+  border-right: 0;
+}
+
+tbody td {
+  padding: 16px 14px;
+  border: 1px solid rgba(227, 220, 209, 0.9);
+  background: rgba(255, 252, 247, 0.7);
+  font-size: 1rem;
+  color: #2b3d31;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 90px;
+  padding: 7px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  background: #eef1e7;
+  color: #405446;
+}
+
+.status-badge.pending {
+  background: #fbf0da;
+  color: #c78a29;
+}
+
+.toast {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  max-width: 320px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: rgba(41, 79, 56, 0.96);
+  color: #fffaf0;
+  box-shadow: 0 18px 34px rgba(44, 57, 42, 0.22);
+  z-index: 40;
+}
+
+@media (max-width: 1400px) {
+  .booking-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .seat-layout-wrap {
+    flex-direction: column;
+  }
+
+  .legend {
+    grid-auto-flow: column;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 900px) {
+  .page-shell {
+    width: min(100% - 16px, 100%);
+    margin: 8px auto 18px;
+  }
+
+  .topbar {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    padding: 18px;
+  }
+
+  .main-nav {
+    flex-wrap: wrap;
+    gap: 18px 26px;
+  }
+
+  .toolbar {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .booking-grid,
+  .management-panel {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .movie-card {
+    grid-template-columns: 1fr;
+  }
+
+  .poster {
+    margin: 0 auto;
+  }
+
+  .selected-card {
+    width: 100%;
+  }
+
+  .date-row {
+    flex-wrap: wrap;
+  }
+
+  .seat-board {
+    padding: 18px 10px 14px;
+  }
+
+  .seat-layout {
+    grid-template-columns: 18px minmax(0, 1fr) 18px;
+    gap: 8px;
+  }
+
+  .seats {
+    grid-template-columns: repeat(16, minmax(14px, 1fr));
+    gap: 5px;
+  }
+
+  .seat {
+    width: 100%;
+    aspect-ratio: 1;
+    height: auto;
+  }
+
+  .management-header {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 12px;
+  }
+
+  .management-title {
+    padding-right: 0;
+  }
+
+  .search-row,
+  .tab-row,
+  .actions {
+    flex-direction: column;
+  }
+
+  .tab-btn,
+  .action-btn {
+    width: 100%;
+  }
+}

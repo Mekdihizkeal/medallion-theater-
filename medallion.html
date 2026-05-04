@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Medallion Theatre</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="medallion.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="panel booking-panel" id="bookingSection">
+        <header class="topbar">
+          <a class="brand" href="index.html" aria-label="The Medallion Theatre">
+            <img src="images/logo-top.png" alt="The Medallion Theatre logo" />
+          </a>
+
+          <nav class="main-nav" aria-label="Primary">
+            <a href="#bookingSection" class="nav-link" data-nav-target="bookingSection">
+              <span class="icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M4.5 10.5 8 7l3 2.5 5-5 3.5 3.5-5 5 2.5 3-3.5 3.5-2.5-3-5 1.5-2-2 1.5-5-3-2.5Z"
+                  />
+                </svg>
+              </span>
+              <span>PLAYS</span>
+            </a>
+            <a href="#managementSection" class="nav-link" data-nav-target="managementSection">
+              <span class="icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M7 3v3M17 3v3M4 8h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" />
+                </svg>
+              </span>
+              <span>EVENTS</span>
+            </a>
+            <a href="#selectedSeatTags" class="nav-link" data-nav-target="selectedSeatTags">
+              <span class="icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M7 4h10a1 1 0 0 1 1 1v15l-6-3-6 3V5a1 1 0 0 1 1-1Z" />
+                </svg>
+              </span>
+              <span>BOOKMARKS</span>
+            </a>
+          </nav>
+
+          <div class="toolbar">
+            <button class="circle-btn" type="button" aria-label="Search" id="headerSearchBtn">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="11" cy="11" r="6.5" />
+                <path d="m16 16 4 4" />
+              </svg>
+            </button>
+            <span class="hello">Hi, Sam!</span>
+            <button class="circle-btn profile-btn" type="button" aria-label="Profile" id="profileBtn">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="8" r="3.2" />
+                <path d="M5 19c.9-3 3.6-4.7 7-4.7s6.1 1.7 7 4.7" />
+              </svg>
+            </button>
+            <div class="profile-menu" id="profileMenu" hidden>
+              <a href="login-page.html#dashboardSection" class="profile-menu-item" data-profile-action="account">My Account</a>
+              <a href="tickets-page.html" class="profile-menu-item" data-profile-action="tickets">My Tickets</a>
+              <a href="login-page.html" class="profile-menu-item" data-profile-action="logout">Log Out</a>
+            </div>
+          </div>
+        </header>
+
+        <div class="booking-grid">
+          <section class="movie-column">
+            <div class="section-heading">
+              <h1>THE MEDALLION THEATRE</h1>
+              <div class="ornament" aria-hidden="true">
+                <span></span>
+                <i></i>
+                <span></span>
+              </div>
+            </div>
+
+            <div class="movie-card">
+              <img class="poster" src="images/poster.png" alt="Dear England poster" />
+
+              <div class="movie-side">
+                <article class="show-card">
+                  <h2>Dear England: James Graham</h2>
+                  <p class="meta">
+                    <span class="meta-clock">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9" />
+                        <path d="M12 7v5l3 2" />
+                      </svg>
+                    </span>
+                    2h 10min
+                    <span class="dot">&middot;</span>
+                    2024
+                    <span class="dot">&middot;</span>
+                    Thriller / Mystery
+                  </p>
+                </article>
+
+                <article class="selected-card">
+                  <h3>Your Selected Seats</h3>
+                  <p class="seat-count"><span id="seatCount">3</span> Seats</p>
+
+                  <div class="selected-seat-tags" id="selectedSeatTags">
+                    <button type="button" class="seat-pill active" data-seat="H1">H1</button>
+                    <button type="button" class="seat-pill active" data-seat="H2">H2</button>
+                    <button type="button" class="seat-pill active" data-seat="H3">H3</button>
+                  </div>
+
+                  <dl class="price-list">
+                    <div><dt>Normal</dt><dd>$300</dd></div>
+                    <div><dt>Deluxe</dt><dd>$0</dd></div>
+                    <div><dt>Super</dt><dd>$0</dd></div>
+                  </dl>
+
+                  <div class="total-row">
+                    <span>Total</span>
+                    <strong id="totalPrice">$300</strong>
+                  </div>
+
+                  <div class="actions">
+                    <button class="action-btn action-btn-primary" type="button" id="purchaseBtn">Purchase</button>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </section>
+
+          <section class="schedule-column">
+            <div class="date-block">
+              <h2>Choose The Date</h2>
+              <div class="date-row">
+                <button type="button" class="date-card">
+                  <span>JAN</span>
+                  <strong>05</strong>
+                  <small>SUN</small>
+                </button>
+                <button type="button" class="date-card">
+                  <span>JAN</span>
+                  <strong>06</strong>
+                  <small>MON</small>
+                </button>
+                <button type="button" class="date-card active">
+                  <span>JAN</span>
+                  <strong>07</strong>
+                  <small>TUE</small>
+                </button>
+                <button type="button" class="date-card">
+                  <span>JAN</span>
+                  <strong>08</strong>
+                  <small>WED</small>
+                </button>
+                <button type="button" class="date-card">
+                  <span>JAN</span>
+                  <strong>09</strong>
+                  <small>THU</small>
+                </button>
+                <button type="button" class="arrow-btn" aria-label="Next date" id="nextDateBtn">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="m9 5 7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="seat-section">
+              <h2>Choose your seat</h2>
+              <div class="seat-layout-wrap">
+                <div class="seat-board">
+                  <div class="stage">STAGE / SCREEN</div>
+                  <div class="seat-layout">
+                    <div class="seat-labels left-labels" aria-hidden="true">
+                      <span>K</span><span>J</span><span>I</span><span>H</span><span>G</span><span>F</span><span>E</span><span>D</span><span>C</span><span>B</span><span>A</span>
+                    </div>
+                    <div class="seats" id="seats"></div>
+                    <div class="seat-labels right-labels" aria-hidden="true">
+                      <span>K</span><span>J</span><span>I</span><span>H</span><span>G</span><span>F</span><span>E</span><span>D</span><span>C</span><span>B</span><span>A</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="legend">
+                  <div><i class="legend-box available"></i><span>Available</span></div>
+                  <div><i class="legend-box unavailable"></i><span>Unavailable</span></div>
+                  <div><i class="legend-box selected"></i><span>Selected</span></div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel management-panel" id="managementSection">
+        <div class="management-header">
+          <img src="images/logo-bottom.png" alt="The Medallion Theatre logo" />
+          <div class="management-title">
+            <h2>The Medallion Theatre Management System</h2>
+            <div class="ornament" aria-hidden="true">
+              <span></span>
+              <i></i>
+              <span></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="search-row">
+          <label class="search-label" for="tableSearch">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="6.5" />
+              <path d="m16 16 4 4" />
+            </svg>
+            <span>Search</span>
+          </label>
+          <input id="tableSearch" type="search" placeholder="Search by name, phone, email..." />
+        </div>
+
+        <div class="tab-row">
+          <button type="button" class="tab-btn active">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 18h16M7 15v-3m5 3V8m5 7v-5" />
+              <path d="M9 6.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" />
+            </svg>
+            <span>Customers</span>
+          </button>
+          <button type="button" class="tab-btn">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M4.5 10.5 8 7l3 2.5 5-5 3.5 3.5-5 5 2.5 3-3.5 3.5-2.5-3-5 1.5-2-2 1.5-5-3-2.5Z"
+              />
+            </svg>
+            <span>Plays</span>
+          </button>
+          <button type="button" class="tab-btn">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 20h16M7 20V7h10v13M9 7V4h6v3M10 11h1m3 0h1m-5 4h1m3 0h1" />
+            </svg>
+            <span>Branches</span>
+          </button>
+          <button type="button" class="tab-btn">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="9" cy="9" r="2" />
+              <circle cx="15.5" cy="10" r="1.8" />
+              <path d="M4.5 18c.9-2.7 3.2-4.2 6.2-4.2s5.3 1.5 6.2 4.2M13.5 18c.5-1.8 2-2.8 4-2.8s3.4 1 4 2.8" />
+            </svg>
+            <span>Employees</span>
+          </button>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+                <th>City</th>
+                <th>Register Date</th>
+                <th>Title</th>
+                <th>Time</th>
+                <th>Price</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="customerRows">
+              <tr>
+                <td>1</td>
+                <td>John</td>
+                <td>Doe</td>
+                <td>(954) 555-1234</td>
+                <td>john.doe@email.com</td>
+                <td>Miami</td>
+                <td>01/07/2024</td>
+                <td>Dear England</td>
+                <td>2:00 PM</td>
+                <td>$100</td>
+                <td><span class="status-badge active">Active</span></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Jane</td>
+                <td>Smith</td>
+                <td>(954) 555-5678</td>
+                <td>jane.smith@email.com</td>
+                <td>Fort Lauderdale</td>
+                <td>01/07/2024</td>
+                <td>Les Miserables</td>
+                <td>7:30 PM</td>
+                <td>$120</td>
+                <td><span class="status-badge active">Active</span></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Michael</td>
+                <td>Brown</td>
+                <td>(954) 555-9012</td>
+                <td>michael.b@email.com</td>
+                <td>West Palm Beach</td>
+                <td>02/07/2024</td>
+                <td>Macbeth</td>
+                <td>2:00 PM</td>
+                <td>$90</td>
+                <td><span class="status-badge pending">Pending</span></td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Emily</td>
+                <td>Davis</td>
+                <td>(954) 555-3456</td>
+                <td>emily.d@email.com</td>
+                <td>Miami</td>
+                <td>02/07/2024</td>
+                <td>Rabbit Hole</td>
+                <td>7:30 PM</td>
+                <td>$110</td>
+                <td><span class="status-badge active">Active</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" hidden></div>
+
+    <script src="medallion.js"></script>
+  </body>
+</html>

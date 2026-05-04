@@ -1,0 +1,441 @@
+:root {
+  --bg: #f5efe5;
+  --paper: #fffdfa;
+  --panel: rgba(255, 252, 246, 0.97);
+  --ink: #2f4b3b;
+  --ink-soft: #7f857f;
+  --accent: #748667;
+  --accent-deep: #697d5d;
+  --gold: #d9b261;
+  --line: rgba(227, 216, 199, 0.95);
+  --shadow: 0 16px 34px rgba(92, 77, 53, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: radial-gradient(circle at top, rgba(251, 247, 239, 0.96), rgba(243, 236, 225, 0.92)), var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.page-shell {
+  width: min(1280px, 100%);
+  margin: 0 auto;
+}
+
+.signup-panel {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top, rgba(253, 249, 242, 0.99), rgba(247, 241, 231, 0.95)),
+    linear-gradient(180deg, rgba(255, 252, 246, 0.98), rgba(244, 238, 227, 0.94));
+  border: 1px solid rgba(93, 111, 85, 0.65);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.top-logo {
+  position: absolute;
+  top: 32px;
+  left: 34px;
+  z-index: 3;
+}
+
+.top-logo img {
+  width: 188px;
+}
+
+.login-link {
+  position: absolute;
+  top: 54px;
+  right: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.login-link::after {
+  content: "";
+  position: absolute;
+  left: 42px;
+  right: -4px;
+  bottom: -8px;
+  height: 2px;
+  background: rgba(217, 178, 97, 0.85);
+}
+
+.login-link-icon svg,
+.field-icon svg,
+.eye-btn svg,
+.footer-link svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.left-shape {
+  position: absolute;
+  left: -118px;
+  top: 208px;
+  width: 470px;
+  height: 760px;
+  background: linear-gradient(180deg, rgba(145, 161, 138, 0.97), rgba(126, 144, 119, 0.95));
+  border-radius: 44% 56% 0 88% / 38% 58% 0 62%;
+  border-right: 2px solid rgba(214, 175, 93, 0.75);
+}
+
+.left-shape::after {
+  content: "";
+  position: absolute;
+  left: 98px;
+  bottom: -118px;
+  width: 270px;
+  height: 330px;
+  background: linear-gradient(180deg, rgba(140, 156, 133, 0.9), rgba(123, 141, 116, 0.9));
+  border-radius: 0 100% 0 100%;
+  transform: rotate(-17deg);
+  box-shadow: inset 0 0 0 2px rgba(214, 175, 93, 0.72);
+}
+
+.right-leaf {
+  position: absolute;
+  right: 58px;
+  top: 304px;
+  width: 180px;
+  height: 404px;
+  opacity: 0.18;
+}
+
+.right-leaf span {
+  position: absolute;
+  width: 64px;
+  height: 118px;
+  border-radius: 100% 0;
+  background: rgba(198, 198, 184, 0.45);
+  transform-origin: bottom left;
+}
+
+.right-leaf span:nth-child(1) { top: 0; right: 0; transform: rotate(8deg); }
+.right-leaf span:nth-child(2) { top: 56px; right: 44px; transform: rotate(24deg); }
+.right-leaf span:nth-child(3) { top: 108px; right: 4px; transform: rotate(16deg); }
+.right-leaf span:nth-child(4) { top: 164px; right: 50px; transform: rotate(29deg); }
+.right-leaf span:nth-child(5) { top: 224px; right: 10px; transform: rotate(18deg); }
+.right-leaf span:nth-child(6) { top: 286px; right: 54px; transform: rotate(34deg); }
+
+.bottom-curve {
+  position: absolute;
+  right: -88px;
+  bottom: -78px;
+  width: 520px;
+  height: 300px;
+  border-top: 2px solid rgba(214, 175, 93, 0.75);
+  border-left: 2px solid rgba(214, 175, 93, 0.75);
+  border-top-left-radius: 360px;
+  opacity: 0.92;
+}
+
+.signup-card {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 650px);
+  margin: 82px auto 110px;
+  padding: 42px 66px 30px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(230, 220, 205, 0.95);
+  border-radius: 22px;
+  box-shadow: 0 20px 40px rgba(95, 80, 57, 0.1);
+}
+
+.signup-card h1 {
+  text-align: center;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 4rem;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.subtitle {
+  text-align: center;
+  margin-top: 10px;
+  color: var(--ink-soft);
+  font-size: 1rem;
+}
+
+.ornament {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0 26px;
+}
+
+.ornament span {
+  width: 92px;
+  height: 1px;
+  background: rgba(217, 178, 97, 0.85);
+}
+
+.ornament i {
+  width: 22px;
+  height: 18px;
+  display: block;
+  position: relative;
+}
+
+.ornament i::before,
+.ornament i::after {
+  content: "";
+  position: absolute;
+  background: var(--gold);
+}
+
+.ornament i::before {
+  left: 50%;
+  top: 2px;
+  width: 2px;
+  height: 12px;
+  transform: translateX(-50%);
+}
+
+.ornament i::after {
+  left: 2px;
+  right: 2px;
+  top: 6px;
+  height: 2px;
+  border-radius: 999px;
+}
+
+.field,
+.field-split {
+  display: grid;
+}
+
+.field {
+  grid-template-columns: 34px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  min-height: 58px;
+  border: 1px solid rgba(228, 218, 203, 0.95);
+  border-radius: 8px;
+  background: rgba(255, 253, 248, 0.92);
+  padding: 0 16px;
+}
+
+.field + .field,
+.gender-row + .field,
+.field-split + .field,
+.field + .field-split {
+  margin-top: 14px;
+}
+
+.field-icon {
+  color: #73846e;
+}
+
+.field input {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #344936;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.field input::placeholder {
+  color: #818781;
+}
+
+.gender-row {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  padding: 18px 10px 0;
+  color: #455948;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.gender-label {
+  margin-right: 18px;
+}
+
+.radio-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.radio-option input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent-deep);
+}
+
+.field-split {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.eye-btn {
+  border: 0;
+  background: transparent;
+  color: #73846e;
+  cursor: pointer;
+}
+
+.signup-btn {
+  width: 100%;
+  height: 56px;
+  margin-top: 16px;
+  border: 0;
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(117, 134, 106, 0.98), rgba(103, 121, 93, 0.98));
+  color: #fbf8f1;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.bottom-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  color: #55665b;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.inline-login {
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.footer-links {
+  position: absolute;
+  left: 50%;
+  bottom: 34px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  z-index: 2;
+}
+
+.footer-link {
+  border: 0;
+  background: transparent;
+  color: #445947;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.divider {
+  width: 1px;
+  height: 28px;
+  background: rgba(145, 149, 138, 0.75);
+}
+
+.toast {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  max-width: 360px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: rgba(74, 96, 67, 0.96);
+  color: #fffaf1;
+  box-shadow: 0 18px 30px rgba(60, 70, 52, 0.2);
+}
+
+@media (max-width: 900px) {
+  .signup-card {
+    width: min(100% - 24px, 650px);
+    margin: 130px auto 120px;
+    padding: 34px 24px 28px;
+  }
+
+  .signup-card h1 {
+    font-size: 2.8rem;
+  }
+
+  .top-logo {
+    left: 18px;
+    top: 18px;
+  }
+
+  .top-logo img {
+    width: 140px;
+  }
+
+  .login-link {
+    top: 28px;
+    right: 20px;
+  }
+
+  .left-shape,
+  .right-leaf,
+  .bottom-curve {
+    opacity: 0.55;
+  }
+
+  .field-split,
+  .footer-links {
+    display: grid;
+  }
+
+  .footer-links {
+    position: static;
+    transform: none;
+    justify-content: center;
+    padding-bottom: 20px;
+    gap: 12px;
+  }
+
+  .divider {
+    display: none;
+  }
+}
