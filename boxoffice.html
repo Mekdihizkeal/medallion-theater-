@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Box Office Manager</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="boxoffice.css">
+
+  <!-- ICONS -->
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <!-- GOOGLE FONTS -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <div>
+
+        <!-- LOGO -->
+        <div class="logo">
+
+          <a href="index.html" aria-label="Go to home page"><div class="logo-circle">
+            MEDALLION
+          </div></a>
+
+        </div>
+
+        <!-- USER -->
+        <div class="manager">
+
+          <img src="https://i.pravatar.cc/150?img=12" alt="">
+
+          <h3>Box Office</h3>
+
+        </div>
+
+        <!-- MENU -->
+        <nav class="menu">
+
+          <button class="menu-item active">
+            <i class="fa-solid fa-chart-line"></i>
+            Dashboard
+          </button>
+
+          <button class="menu-item">
+            <i class="fa-solid fa-ticket"></i>
+            Ticket Sales
+          </button>
+
+          <button class="menu-item">
+            <i class="fa-solid fa-film"></i>
+            Movies
+          </button>
+
+          <button class="menu-item">
+            <i class="fa-solid fa-users"></i>
+            Customers
+          </button>
+
+          <button class="menu-item">
+            <i class="fa-solid fa-calendar-days"></i>
+            Schedules
+          </button>
+
+        </nav>
+
+      </div>
+
+      <!-- LOGOUT -->
+      <div class="logout">
+
+        <button class="menu-item">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          Logout
+        </button>
+
+      </div>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="content">
+
+      <!-- TOPBAR -->
+      <div class="topbar">
+
+        <h1>BOX OFFICE MANAGER</h1>
+
+        <div class="top-icons">
+
+          <button class="icon-btn">
+            <i class="fa-solid fa-bell"></i>
+          </button>
+
+          <button class="icon-btn">
+            <i class="fa-solid fa-user"></i>
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- STATS -->
+      <div class="stats">
+
+        <div class="card">
+
+          <div class="left">
+
+            <i class="fa-solid fa-ticket"></i>
+
+            <div>
+
+              <h3>Total Tickets Sold</h3>
+
+              <p id="tickets">245</p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="card">
+
+          <div class="left">
+
+            <i class="fa-solid fa-film"></i>
+
+            <div>
+
+              <h3>Available Movies</h3>
+
+              <p>8</p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="card">
+
+          <div class="left">
+
+            <i class="fa-solid fa-dollar-sign"></i>
+
+            <div>
+
+              <h3>Revenue</h3>
+
+              <p>$4.8K</p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- MOVIES -->
+      <h2 class="section-title">Now Showing</h2>
+
+      <div class="movies">
+
+        <!-- MOVIE -->
+        <div class="movie-card">
+
+          <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1200&auto=format&fit=crop">
+
+          <div class="movie-info">
+
+            <h3>Macbeth</h3>
+
+            <p>Drama / Theatre</p>
+
+            <button class="sell-btn" data-movie="Macbeth">
+              Sell Ticket
+            </button>
+
+          </div>
+
+        </div>
+
+        <!-- MOVIE -->
+        <div class="movie-card">
+
+          <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=1200&auto=format&fit=crop">
+
+          <div class="movie-info">
+
+            <h3>Rabbit Hole</h3>
+
+            <p>Mystery / Stage Play</p>
+
+            <button class="sell-btn" data-movie="Rabbit Hole">
+              Sell Ticket
+            </button>
+
+          </div>
+
+        </div>
+
+        <!-- MOVIE -->
+        <div class="movie-card">
+
+          <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1200&auto=format&fit=crop">
+
+          <div class="movie-info">
+
+            <h3>Green Shadow</h3>
+
+            <p>Fantasy / Theatre</p>
+
+            <button class="sell-btn" data-movie="Green Shadow">
+              Sell Ticket
+            </button>
+
+          </div>
+
+        </div>
+
+        <!-- MOVIE -->
+        <div class="movie-card">
+
+          <img src="https://images.unsplash.com/photo-1542204165-65bf26472b9b?q=80&w=1200&auto=format&fit=crop">
+
+          <div class="movie-info">
+
+            <h3>Hamlet</h3>
+
+            <p>Classic / Drama</p>
+
+            <button class="sell-btn" data-movie="Hamlet">
+              Sell Ticket
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal" id="modal">
+
+    <div class="modal-content">
+
+      <h2 id="movieTitle">Sell Ticket</h2>
+
+      <input type="text" id="customerName" placeholder="Customer Name">
+
+      <input type="number" id="seatNumber" placeholder="Seat Number">
+
+      <button id="confirmBtn">
+        Confirm Ticket
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- JS -->
+  <script src="boxoffice.js"></script>
+
+</body>
+</html>

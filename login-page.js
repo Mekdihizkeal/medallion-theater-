@@ -99,29 +99,45 @@ document.querySelectorAll(".nav-link").forEach((link) => {
   });
 });
 
-heroLogoLink.addEventListener("click", () => {
+heroLogoLink?.addEventListener("click", () => {
   showToast("Medallion Theatre home opened.");
 });
 
-navLoginBtn.addEventListener("click", () => {
-  document.getElementById("loginSection").scrollIntoView({ behavior: "smooth", block: "start" });
+function flagInput(input) {
+  input.classList.remove("input-error");
+  void input.offsetWidth; // force reflow to restart animation
+  input.classList.add("input-error");
+  input.focus();
+  input.addEventListener("input", () => input.classList.remove("input-error"), { once: true });
+}
+
+navLoginBtn?.addEventListener("click", (event) => {
+  event.preventDefault();
   if (emailInput.value.trim() && passwordInput.value.trim()) {
     attemptLogin();
     return;
   }
 
-  emailInput.focus();
-  showToast("Login form ready.");
+  if (emailInput.value.trim() && !passwordInput.value.trim()) {
+    flagInput(passwordInput);
+    return;
+  }
+
+  if (!emailInput.value.trim()) {
+    flagInput(emailInput);
+    return;
+  }
 });
 
-togglePassword.addEventListener("click", () => {
+togglePassword?.addEventListener("click", () => {
   const isHidden = passwordInput.type === "password";
   passwordInput.type = isHidden ? "text" : "password";
   togglePassword.setAttribute("aria-label", isHidden ? "Hide password" : "Show password");
 });
 
-loginForm.addEventListener("submit", (event) => {
+loginForm?.addEventListener("submit", (event) => {
   event.preventDefault();
+  attemptLogin();
 });
 
 function attemptLogin() {
@@ -130,14 +146,12 @@ function attemptLogin() {
     return;
   }
 
-  window.location.hash = "dashboardSection";
-  document.getElementById("dashboardSection").scrollIntoView({ behavior: "smooth", block: "start" });
-  showToast(`Welcome back, ${emailInput.value.trim()}.`);
+  window.location.href = "/admin%20.html";
 }
 
 function applyAdminView(sectionKey) {
   const view = adminViews[sectionKey];
-  if (!view) {
+  if (!view || !dashboardHeading) {
     return;
   }
 
@@ -153,7 +167,7 @@ function applyAdminView(sectionKey) {
   });
 }
 
-[emailInput, passwordInput].forEach((input) => {
+[emailInput, passwordInput].filter(Boolean).forEach((input) => {
   input.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
       event.preventDefault();
@@ -163,7 +177,7 @@ function applyAdminView(sectionKey) {
 });
 
 
-forgotBtn.addEventListener("click", (event) => {
+forgotBtn?.addEventListener("click", (event) => {
   event.preventDefault();
   showToast("Password reset link demo triggered.");
 });
@@ -183,18 +197,18 @@ document.querySelectorAll(".menu-btn, .menu-link").forEach((button) => {
   });
 });
 
-bellBtn.addEventListener("click", () => {
+bellBtn?.addEventListener("click", () => {
   notificationCount = Math.max(0, notificationCount - 1);
   bellBadge.textContent = String(notificationCount);
   bellBadge.hidden = notificationCount === 0;
   showToast(notificationCount === 0 ? "All notifications cleared." : `${notificationCount} notifications remaining.`);
 });
 
-statCardLeft.addEventListener("click", () => {
+statCardLeft?.addEventListener("click", () => {
   showToast(`${statLabelLeft.textContent}: ${statValueLeft.textContent}`);
 });
 
-statCardRight.addEventListener("click", () => {
+statCardRight?.addEventListener("click", () => {
   showToast(`${statLabelRight.textContent}: ${statValueRight.textContent}`);
 });
 

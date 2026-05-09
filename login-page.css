@@ -313,6 +313,27 @@ a {
   font-weight: 700;
 }
 
+.login-submit-btn {
+  display: block;
+  width: 100%;
+  margin-top: 18px;
+  padding: 13px;
+  background: linear-gradient(135deg, #c8972a, #e0b84a);
+  color: #1a1a1a;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.login-submit-btn:hover {
+  opacity: 0.88;
+}
+
 .login-actions {
   display: flex;
   justify-content: center;
@@ -326,6 +347,20 @@ a {
 
 .signup-btn {
   font-size: 1.5rem;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+.input-error {
+  animation: shake 0.35s ease;
+  border-color: #c0392b !important;
+  box-shadow: 0 0 0 2px rgba(192, 57, 43, 0.25) !important;
 }
 
 .leaf-art {

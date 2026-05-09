@@ -1,4 +1,6 @@
 const verifyForm = document.getElementById("verifyForm");
+const reportBox = document.getElementById("reportBox");
+const reportContent = document.getElementById("reportContent");
 const verifyPerformance = document.getElementById("verifyPerformance");
 const verifyDate = document.getElementById("verifyDate");
 const verifyTime = document.getElementById("verifyTime");
@@ -37,16 +39,39 @@ verifyForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
   const firstName = document.getElementById("verifyFirstName").value.trim();
+  const lastName = document.getElementById("verifyLastName").value.trim();
+  const street = document.getElementById("verifyStreet").value.trim();
+  const city = document.getElementById("verifyCity").value.trim();
+  const state = document.getElementById("verifyState").value.trim();
+  const zip = document.getElementById("verifyZip").value.trim();
+  const phone = document.getElementById("verifyPhone").value.trim();
   const email = document.getElementById("verifyEmail").value.trim();
   const performance = verifyPerformance.value.trim();
+  const date = verifyDate.value.trim();
+  const time = verifyTime.value.trim();
   const seats = verifySeats.value.trim();
+  const total = verifyTotal.value.trim();
 
   if (!firstName || !email || !performance || !seats) {
     showToast("Enter the patron and ticket details first.");
     return;
   }
 
+  reportContent.innerHTML = `
+    <strong>Customer Name:</strong> ${firstName} ${lastName}<br><br>
+    <strong>Address:</strong> ${street}, ${city}, ${state}, ${zip}<br><br>
+    <strong>Phone:</strong> ${phone}<br><br>
+    <strong>Email:</strong> ${email}<br><br>
+    <strong>Performance:</strong> ${performance}<br><br>
+    <strong>Date:</strong> ${date}<br><br>
+    <strong>Time:</strong> ${time}<br><br>
+    <strong>Seats:</strong> ${seats}<br><br>
+    <strong>Total Collected:</strong> ${total}
+  `;
+
+  reportBox.style.display = "block";
   showToast(`Ticket verified for ${firstName}.`);
 });
 
 fillDemoTicket();
+

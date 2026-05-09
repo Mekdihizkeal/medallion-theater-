@@ -1,0 +1,146 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> The medallion  Theatre managment system</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="medallion.css" />
+    </head>
+    <body>
+        
+    </body>
+    </html> 
+        <section class="panel management-panel" id="managementSection">
+        <div class="management-header">
+          <img src="images/logo-bottom.png" alt="The Medallion Theatre logo" />
+          <div class="management-title">
+            <h2>The Medallion Theatre Management System</h2>
+            <div class="ornament" aria-hidden="true">
+              <span></span>
+              <i></i>
+              <span></span>
+            </div>
+          </div>
+        </div>
+       
+         <div class="search-row">
+          <label class="search-label" for="tableSearch">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="6.5" />
+              <path d="m16 16 4 4" />
+            </svg>
+            <span>Search</span>
+          </label>
+          <input id="tableSearch" type="search" placeholder="Search by name, phone, email..." />
+        </div>
+     <div class="tab-row">
+          <button type="button" class="tab-btn active">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 18h16M7 15v-3m5 3V8m5 7v-5" />
+              <path d="M9 6.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" />
+            </svg>
+            <span>Customers</span>
+          </button>
+          <button type="button" class="tab-btn">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M4.5 10.5 8 7l3 2.5 5-5 3.5 3.5-5 5 2.5 3-3.5 3.5-2.5-3-5 1.5-2-2 1.5-5-3-2.5Z"
+              />
+            </svg>
+            <span>Plays</span>
+          </button>
+          <button type="button" class="tab-btn">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 20h16M7 20V7h10v13M9 7V4h6v3M10 11h1m3 0h1m-5 4h1m3 0h1" />
+            </svg>
+            <span>Branches</span>
+          </button>
+          <button type="button" class="tab-btn">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="9" cy="9" r="2" />
+              <circle cx="15.5" cy="10" r="1.8" />
+              <path d="M4.5 18c.9-2.7 3.2-4.2 6.2-4.2s5.3 1.5 6.2 4.2M13.5 18c.5-1.8 2-2.8 4-2.8s3.4 1 4 2.8" />
+            </svg>
+            <span>Employees</span>
+          </button>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+                <th>City</th>
+                <th>Register Date</th>
+                <th>Title</th>
+                <th>Time</th>
+                <th>Price</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="customerRows">
+              <tr>
+                <td>1</td>
+                <td>John</td>
+                <td>Doe</td>
+                <td>(954) 555-1234</td>
+                <td>john.doe@email.com</td>
+                <td>Miami</td>
+                <td>01/07/2024</td>
+                <td>Dear England</td>
+                <td>2:00 PM</td>
+                <td>$100</td>
+                <td><span class="status-badge active">Active</span></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Jane</td>
+                <td>Smith</td>
+                <td>(954) 555-5678</td>
+                <td>jane.smith@email.com</td>
+                <td>Fort Lauderdale</td>
+                <td>01/07/2024</td>
+                <td>Les Miserables</td>
+                <td>7:30 PM</td>
+                <td>$120</td>
+                <td><span class="status-badge active">Active</span></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Michael</td>
+                <td>Brown</td>
+                <td>(954) 555-9012</td>
+                <td>michael.b@email.com</td>
+                <td>West Palm Beach</td>
+                <td>02/07/2024</td>
+                <td>Macbeth</td>
+                <td>2:00 PM</td>
+                <td>$90</td>
+                <td><span class="status-badge pending">Pending</span></td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Emily</td>
+                <td>Davis</td>
+                <td>(954) 555-3456</td>
+                <td>emily.d@email.com</td>
+                <td>Miami</td>
+                <td>02/07/2024</td>
+                <td>Rabbit Hole</td>
+                <td>7:30 PM</td>
+                <td>$110</td>
+                <td><span class="status-badge active">Active</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>

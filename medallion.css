@@ -544,6 +544,7 @@ input {
   pointer-events: none;
 }
 
+
 .legend {
   display: grid;
   gap: 18px;
