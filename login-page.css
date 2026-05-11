@@ -55,6 +55,123 @@ a {
   overflow: hidden;
 }
 
+.login-shell {
+  width: min(1180px, calc(100% - 28px));
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.login-hero {
+  width: 100%;
+  min-height: 680px;
+  position: relative;
+  background:
+    linear-gradient(110deg, rgba(47, 75, 59, 0.9), rgba(47, 75, 59, 0.56)),
+    url("images/poster.png") center/cover;
+  color: #fffaf1;
+  border-radius: 18px;
+}
+
+.login-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 28px;
+}
+
+.login-topbar .hero-logo img {
+  width: 132px;
+  border-radius: 10px;
+  background: rgba(255, 253, 248, 0.84);
+  transform: scale(1.2);
+  transform-origin: left center;
+}
+
+.login-toplinks {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.login-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 460px;
+  gap: 34px;
+  align-items: center;
+  padding: 28px 54px 54px;
+}
+
+.login-copy {
+  max-width: 590px;
+}
+
+.login-copy .eyebrow {
+  color: var(--gold);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.login-copy h1 {
+  margin-top: 10px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(3rem, 5vw, 5.4rem);
+  line-height: 0.95;
+}
+
+.login-copy p:last-child {
+  margin-top: 18px;
+  max-width: 520px;
+  color: rgba(255, 250, 241, 0.84);
+  line-height: 1.7;
+}
+
+.polished-login-card {
+  margin: 0;
+  color: var(--ink);
+  backdrop-filter: blur(10px);
+}
+
+.polished-login-card h2 {
+  text-align: center;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.login-mode {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 0 0 18px;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(245, 239, 229, 0.9);
+}
+
+.mode-btn {
+  min-height: 42px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--ink);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.mode-btn.active {
+  background: var(--accent-deep);
+  color: #fffaf1;
+}
+
 .hero-topbar {
   display: flex;
   justify-content: space-between;
@@ -64,6 +181,8 @@ a {
 
 .hero-logo img {
   width: 170px;
+  transform: scale(1.12);
+  transform-origin: left center;
 }
 
 .hero-nav {
@@ -313,6 +432,27 @@ a {
   font-weight: 700;
 }
 
+.login-submit-btn {
+  display: block;
+  width: 100%;
+  margin-top: 18px;
+  padding: 13px;
+  background: linear-gradient(135deg, #c8972a, #e0b84a);
+  color: #1a1a1a;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.login-submit-btn:hover {
+  opacity: 0.88;
+}
+
 .login-actions {
   display: flex;
   justify-content: center;
@@ -326,6 +466,20 @@ a {
 
 .signup-btn {
   font-size: 1.5rem;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+.input-error {
+  animation: shake 0.35s ease;
+  border-color: #c0392b !important;
+  box-shadow: 0 0 0 2px rgba(192, 57, 43, 0.25) !important;
 }
 
 .leaf-art {
@@ -367,6 +521,8 @@ a {
 
 .sidebar-logo {
   width: 120px;
+  transform: scale(1.18);
+  transform-origin: center;
   margin: 0 auto;
 }
 
@@ -462,6 +618,8 @@ a {
 
 .center-logo {
   width: 104px;
+  transform: scale(1.18);
+  transform-origin: center;
   margin: 6px auto 0;
 }
 
@@ -567,6 +725,120 @@ a {
   box-shadow: 0 10px 24px rgba(73, 61, 41, 0.1);
 }
 
+.admin-main {
+  min-height: 760px;
+}
+
+.admin-panel-view {
+  padding: 22px 34px 34px;
+}
+
+.admin-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-toolbar h2,
+.admin-report h3 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2rem;
+}
+
+.small-action,
+.show-form button {
+  min-height: 42px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--accent-deep);
+  color: #fffaf1;
+  padding: 0 18px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.action-link {
+  text-decoration: none;
+}
+
+.boxoffice-link {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: rgba(255, 253, 248, 0.92);
+}
+
+.show-form {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr 0.7fr auto;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.show-form input {
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 253, 248, 0.92);
+  padding: 0 12px;
+}
+
+.admin-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+  background: rgba(255, 253, 248, 0.86);
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+
+.admin-table th {
+  background: var(--accent-deep);
+  color: #fffaf1;
+}
+
+.admin-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.danger-btn {
+  border: 0;
+  border-radius: 7px;
+  background: #9f3f36;
+  color: #fffaf1;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.admin-report {
+  margin-top: 18px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(227, 238, 225, 0.8);
+  line-height: 1.7;
+}
+
 .nav-link:hover,
 .link-btn:hover,
 .menu-link:hover,
@@ -593,6 +865,14 @@ a {
 }
 
 @media (max-width: 1100px) {
+  .login-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .login-copy {
+    max-width: 760px;
+  }
+
   .hero-stage {
     grid-template-columns: 180px 1fr;
     gap: 14px;
@@ -625,6 +905,7 @@ a {
   }
 
   .hero-topbar,
+  .login-topbar,
   .hero-nav,
   .hero-stage,
   .login-actions,
@@ -637,6 +918,18 @@ a {
     justify-content: center;
     gap: 14px;
     padding: 16px;
+  }
+
+  .login-hero {
+    min-height: auto;
+  }
+
+  .login-layout {
+    padding: 18px 14px 22px;
+  }
+
+  .login-copy h1 {
+    font-size: 2.8rem;
   }
 
   .hero-nav {
@@ -659,7 +952,8 @@ a {
   }
 
   .stat-row,
-  .poster-row {
+  .poster-row,
+  .show-form {
     grid-template-columns: 1fr;
   }
 }

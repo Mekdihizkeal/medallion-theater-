@@ -57,8 +57,26 @@ signupForm.addEventListener("submit", (event) => {
     return;
   }
 
+  const user = {
+    firstName,
+    lastName,
+    email,
+    password,
+    phone: document.getElementById("phoneNumber").value.trim(),
+    sex: document.querySelector("input[name='sex']:checked")?.value || "Male"
+  };
+  const users = JSON.parse(localStorage.getItem("medallionUsers") || "[]");
+  const existingIndex = users.findIndex((item) => item.email.toLowerCase() === email.toLowerCase());
+  if (existingIndex >= 0) {
+    users[existingIndex] = user;
+  } else {
+    users.push(user);
+  }
+  localStorage.setItem("medallionUsers", JSON.stringify(users));
+  localStorage.setItem("medallionCurrentUser", JSON.stringify(user));
+
   showToast(`Account created for ${firstName} ${lastName}.`);
   window.setTimeout(() => {
-    window.location.href = "login-page.html";
+    window.location.href = `login-page.html?email=${encodeURIComponent(email)}`;
   }, 900);
 });

@@ -1,159 +1,94 @@
-const loginForm = document.getElementById("loginForm");
-const emailInput = document.getElementById("emailInput");
-const passwordInput = document.getElementById("passwordInput");
-const togglePassword = document.getElementById("togglePassword");
-const forgotBtn = document.getElementById("forgotBtn");
-const navLoginBtn = document.getElementById("navLoginBtn");
-const bellBtn = document.getElementById("bellBtn");
-const bellBadge = document.getElementById("bellBadge");
-const heroLogoLink = document.getElementById("heroLogoLink");
 const toast = document.getElementById("toast");
-const dashboardHeading = document.getElementById("dashboardHeading");
-const statLabelLeft = document.getElementById("statLabelLeft");
-const statValueLeft = document.getElementById("statValueLeft");
-const statLabelRight = document.getElementById("statLabelRight");
-const statValueRight = document.getElementById("statValueRight");
-const posterOne = document.getElementById("posterOne");
-const posterTwo = document.getElementById("posterTwo");
-const posterThree = document.getElementById("posterThree");
-const statCardLeft = document.getElementById("statCardLeft");
-const statCardRight = document.getElementById("statCardRight");
 let toastTimer;
-let notificationCount = 3;
-
-const adminViews = {
-  dashboard: {
-    heading: "THE MEDALLION THEATRE",
-    leftLabel: "TOTAL SOLD TICKET",
-    leftValue: "9",
-    rightLabel: "AVAILABLE MOVIES",
-    rightValue: "4",
-    posters: [
-      { src: "images/rabbit-hole-card.png", alt: "Rabbit Hole poster" },
-      { src: "images/macbeth-card.png", alt: "Macbeth poster" },
-      { src: "images/green-card.png", alt: "Green poster" }
-    ]
-  },
-  "add-movies": {
-    heading: "ADD MOVIES",
-    leftLabel: "DRAFT MOVIES",
-    leftValue: "3",
-    rightLabel: "POSTERS READY",
-    rightValue: "6",
-    posters: [
-      { src: "images/green-card.png", alt: "Green poster" },
-      { src: "images/rabbit-hole-card.png", alt: "Rabbit Hole poster" },
-      { src: "images/macbeth-card.png", alt: "Macbeth poster" }
-    ]
-  },
-  "available-movies": {
-    heading: "AVAILABLE MOVIES",
-    leftLabel: "NOW SHOWING",
-    leftValue: "4",
-    rightLabel: "COMING SOON",
-    rightValue: "2",
-    posters: [
-      { src: "images/macbeth-card.png", alt: "Macbeth poster" },
-      { src: "images/green-card.png", alt: "Green poster" },
-      { src: "images/rabbit-hole-card.png", alt: "Rabbit Hole poster" }
-    ]
-  },
-  "edit-screening": {
-    heading: "EDIT SCREENING",
-    leftLabel: "TODAY'S SHOWS",
-    leftValue: "7",
-    rightLabel: "UPDATED TIMES",
-    rightValue: "5",
-    posters: [
-      { src: "images/rabbit-hole-card.png", alt: "Rabbit Hole poster" },
-      { src: "images/green-card.png", alt: "Green poster" },
-      { src: "images/macbeth-card.png", alt: "Macbeth poster" }
-    ]
-  },
-  customers: {
-    heading: "CUSTOMERS",
-    leftLabel: "REGISTERED USERS",
-    leftValue: "128",
-    rightLabel: "ACTIVE BOOKINGS",
-    rightValue: "37",
-    posters: [
-      { src: "images/macbeth-card.png", alt: "Macbeth poster" },
-      { src: "images/rabbit-hole-card.png", alt: "Rabbit Hole poster" },
-      { src: "images/green-card.png", alt: "Green poster" }
-    ]
-  }
-};
 
 function showToast(message) {
+  if (!toast) return;
   clearTimeout(toastTimer);
   toast.textContent = message;
   toast.hidden = false;
   toastTimer = window.setTimeout(() => {
     toast.hidden = true;
-  }, 2400);
+  }, 2200);
 }
 
-document.querySelectorAll(".nav-link").forEach((link) => {
-  link.addEventListener("click", () => {
-    showToast(`${link.textContent.trim()} opened.`);
-  });
-});
+const loginForm = document.getElementById("loginForm");
+const emailInput = document.getElementById("emailInput");
+const passwordInput = document.getElementById("passwordInput");
+const togglePassword = document.getElementById("togglePassword");
+const forgotBtn = document.getElementById("forgotBtn");
+const modeButtons = document.querySelectorAll("[data-login-role]");
+let loginRole = "user";
 
-heroLogoLink.addEventListener("click", () => {
-  showToast("Medallion Theatre home opened.");
-});
-
-navLoginBtn.addEventListener("click", () => {
-  document.getElementById("loginSection").scrollIntoView({ behavior: "smooth", block: "start" });
-  if (emailInput.value.trim() && passwordInput.value.trim()) {
-    attemptLogin();
+function attemptLogin() {
+  if (!emailInput?.value.trim() || !passwordInput?.value.trim()) {
+    showToast("Enter both email and password.");
     return;
   }
 
-  emailInput.focus();
-  showToast("Login form ready.");
+  const email = emailInput.value.trim();
+  const password = passwordInput.value;
+
+  if (loginRole === "admin") {
+    if (email.toLowerCase() === "admin@medallion.com" && password === "admin123") {
+      showToast("Admin login successful.");
+      window.setTimeout(() => {
+        window.location.href = "admin .html";
+      }, 500);
+      return;
+    }
+
+    showToast("Use admin@medallion.com and admin123 for admin demo.");
+    return;
+  }
+
+  const users = JSON.parse(localStorage.getItem("medallionUsers") || "[]");
+  const user = users.find((item) => item.email.toLowerCase() === email.toLowerCase() && item.password === password);
+  if (!user) {
+    showToast("Create a user account first or check your password.");
+    return;
+  }
+
+  localStorage.setItem("medallionCurrentUser", JSON.stringify(user));
+  showToast(`Welcome back, ${user.firstName}.`);
+  window.setTimeout(() => {
+    window.location.href = "index.html";
+  }, 600);
+}
+
+modeButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    modeButtons.forEach((item) => item.classList.remove("active"));
+    button.classList.add("active");
+    loginRole = button.dataset.loginRole;
+    showToast(`${button.textContent.trim()} login selected.`);
+  });
 });
 
-togglePassword.addEventListener("click", () => {
+const loginParams = new URLSearchParams(window.location.search);
+const requestedRole = loginParams.get("role");
+if (requestedRole === "admin") {
+  const adminButton = document.querySelector("[data-login-role='admin']");
+  adminButton?.click();
+}
+
+const emailFromSignup = loginParams.get("email");
+if (emailInput && emailFromSignup) {
+  emailInput.value = emailFromSignup;
+  passwordInput?.focus();
+}
+
+togglePassword?.addEventListener("click", () => {
   const isHidden = passwordInput.type === "password";
   passwordInput.type = isHidden ? "text" : "password";
   togglePassword.setAttribute("aria-label", isHidden ? "Hide password" : "Show password");
 });
 
-loginForm.addEventListener("submit", (event) => {
+loginForm?.addEventListener("submit", (event) => {
   event.preventDefault();
+  attemptLogin();
 });
 
-function attemptLogin() {
-  if (!emailInput.value.trim() || !passwordInput.value.trim()) {
-    showToast("Enter both email and password.");
-    return;
-  }
-
-  window.location.hash = "dashboardSection";
-  document.getElementById("dashboardSection").scrollIntoView({ behavior: "smooth", block: "start" });
-  showToast(`Welcome back, ${emailInput.value.trim()}.`);
-}
-
-function applyAdminView(sectionKey) {
-  const view = adminViews[sectionKey];
-  if (!view) {
-    return;
-  }
-
-  dashboardHeading.textContent = view.heading;
-  statLabelLeft.textContent = view.leftLabel;
-  statValueLeft.textContent = view.leftValue;
-  statLabelRight.textContent = view.rightLabel;
-  statValueRight.textContent = view.rightValue;
-
-  [posterOne, posterTwo, posterThree].forEach((poster, index) => {
-    poster.src = view.posters[index].src;
-    poster.alt = view.posters[index].alt;
-  });
-}
-
-[emailInput, passwordInput].forEach((input) => {
+[emailInput, passwordInput].filter(Boolean).forEach((input) => {
   input.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
       event.preventDefault();
@@ -162,47 +97,124 @@ function applyAdminView(sectionKey) {
   });
 });
 
-
-forgotBtn.addEventListener("click", (event) => {
+forgotBtn?.addEventListener("click", (event) => {
   event.preventDefault();
   showToast("Password reset link demo triggered.");
 });
 
 document.querySelectorAll(".social-btn").forEach((button) => {
-  button.addEventListener("click", () => {
-    showToast("Social link demo clicked.");
-  });
+  button.addEventListener("click", () => showToast("Social link demo clicked."));
 });
 
-document.querySelectorAll(".menu-btn, .menu-link").forEach((button) => {
+const adminHeading = document.getElementById("adminHeading");
+const usersTableBody = document.getElementById("usersTableBody");
+const adminShowsTableBody = document.getElementById("adminShowsTableBody");
+const adminShowForm = document.getElementById("adminShowForm");
+const adminSalesReport = document.getElementById("adminSalesReport");
+
+const defaultUsers = [
+  { id: "U001", name: "Alice Morgan", email: "alice@example.com", role: "Customer", tickets: 4 },
+  { id: "U002", name: "James Carter", email: "james@example.com", role: "Customer", tickets: 2 },
+  { id: "U003", name: "Sam Admin", email: "admin@medallion.com", role: "Admin", tickets: 0 },
+  { id: "U004", name: "Nina Patel", email: "nina@example.com", role: "Customer", tickets: 5 }
+];
+
+const defaultShows = [
+  { movie: "Dear England", date: "May 11, 2026", time: "7:00 PM", sold: 11, available: 665, revenue: 715 },
+  { movie: "Macbeth", date: "May 12, 2026", time: "8:00 PM", sold: 8, available: 668, revenue: 520 },
+  { movie: "Rabbit Hole", date: "May 13, 2026", time: "6:30 PM", sold: 6, available: 670, revenue: 390 }
+];
+
+function readShows() {
+  try {
+    return JSON.parse(localStorage.getItem("medallionShows")) || defaultShows;
+  } catch {
+    return defaultShows;
+  }
+}
+
+function saveShows(shows) {
+  localStorage.setItem("medallionShows", JSON.stringify(shows));
+}
+
+function renderUsers() {
+  if (!usersTableBody) return;
+  usersTableBody.innerHTML = defaultUsers
+    .map((user) => `<tr><td>${user.id}</td><td>${user.name}</td><td>${user.email}</td><td>${user.role}</td><td>${user.tickets}</td></tr>`)
+    .join("");
+}
+
+function renderShows() {
+  if (!adminShowsTableBody) return;
+  const shows = readShows();
+  adminShowsTableBody.innerHTML = shows
+    .map(
+      (show, index) => `
+        <tr>
+          <td>${show.movie}</td>
+          <td>${show.date}</td>
+          <td>${show.time}</td>
+          <td>${show.sold}</td>
+          <td>${show.available}</td>
+          <td><button type="button" class="danger-btn" data-remove-show="${index}">Remove</button></td>
+        </tr>
+      `
+    )
+    .join("");
+}
+
+document.querySelectorAll("[data-admin-panel]").forEach((button) => {
   button.addEventListener("click", () => {
-    document.querySelector(".sidebar-menu .active")?.classList.remove("active");
+    document.querySelector("[data-admin-panel].active")?.classList.remove("active");
     button.classList.add("active");
-    applyAdminView(button.dataset.section);
-    showToast(`${button.textContent.trim()} selected.`);
+    const panel = button.dataset.adminPanel;
+    adminHeading.textContent = panel === "users" ? "MANAGE USERS" : "MANAGE SHOWS";
+    document.querySelectorAll("[data-admin-content]").forEach((content) => {
+      content.hidden = content.dataset.adminContent !== panel;
+    });
   });
 });
 
-bellBtn.addEventListener("click", () => {
-  notificationCount = Math.max(0, notificationCount - 1);
-  bellBadge.textContent = String(notificationCount);
-  bellBadge.hidden = notificationCount === 0;
-  showToast(notificationCount === 0 ? "All notifications cleared." : `${notificationCount} notifications remaining.`);
+document.getElementById("refreshUsersBtn")?.addEventListener("click", () => {
+  renderUsers();
+  showToast("User database pulled.");
 });
 
-statCardLeft.addEventListener("click", () => {
-  showToast(`${statLabelLeft.textContent}: ${statValueLeft.textContent}`);
+adminShowForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const movie = document.getElementById("adminMovieName").value.trim();
+  const date = document.getElementById("adminShowDate").value.trim();
+  const time = document.getElementById("adminShowTime").value.trim();
+  if (!movie || !date || !time) {
+    showToast("Enter movie, date, and time.");
+    return;
+  }
+  const shows = readShows();
+  shows.push({ movie, date, time, sold: 0, available: 676, revenue: 0 });
+  saveShows(shows);
+  adminShowForm.reset();
+  renderShows();
+  showToast(`${movie} added.`);
 });
 
-statCardRight.addEventListener("click", () => {
-  showToast(`${statLabelRight.textContent}: ${statValueRight.textContent}`);
+adminShowsTableBody?.addEventListener("click", (event) => {
+  const removeButton = event.target.closest("[data-remove-show]");
+  if (!removeButton) return;
+  const shows = readShows();
+  const [removed] = shows.splice(Number(removeButton.dataset.removeShow), 1);
+  saveShows(shows);
+  renderShows();
+  showToast(`${removed.movie} removed.`);
 });
 
-document.querySelectorAll(".poster-btn").forEach((button) => {
-  button.addEventListener("click", () => {
-    const image = button.querySelector("img");
-    showToast(`${image.alt} opened.`);
-  });
+document.getElementById("adminReportBtn")?.addEventListener("click", () => {
+  const shows = readShows().map((show) => ({ ...show, revenue: Number(show.revenue) || (Number(show.sold) || 0) * 65 }));
+  const sold = shows.reduce((sum, show) => sum + Number(show.sold), 0);
+  const available = shows.reduce((sum, show) => sum + Number(show.available), 0);
+  const totalRevenue = shows.reduce((sum, show) => sum + Number(show.revenue), 0);
+  adminSalesReport.innerHTML = `<h3>Sales Report</h3><p>Total revenue: <strong>$${totalRevenue}</strong></p><p>Total seats sold: <strong>${sold}</strong></p><p>Total seats available: <strong>${available}</strong></p>`;
+  showToast("Sales report generated.");
 });
 
-applyAdminView("dashboard");
+renderUsers();
+renderShows();

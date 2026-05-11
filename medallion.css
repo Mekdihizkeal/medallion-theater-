@@ -66,6 +66,8 @@ input {
 
 .brand img {
   width: 92px;
+  transform: scale(1.2);
+  transform-origin: left center;
 }
 
 .main-nav {
@@ -150,7 +152,6 @@ input {
 
 .icon,
 .circle-btn svg,
-.search-label svg,
 .tab-btn svg {
   width: 22px;
   height: 22px;
@@ -468,10 +469,11 @@ input {
 }
 
 .seat-board {
-  width: min(100%, 720px);
+  width: min(100%, 820px);
   border-radius: 14px;
   padding: 20px 18px 16px;
   background: rgba(255, 253, 248, 0.92);
+  overflow-x: auto;
 }
 
 .stage {
@@ -489,53 +491,102 @@ input {
 }
 
 .seat-layout {
-  display: grid;
-  grid-template-columns: 14px minmax(0, 1fr) 14px;
-  gap: 8px;
-  align-items: start;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
 }
 
-.seat-labels {
-  display: grid;
-  gap: 7px;
-  padding-top: 1px;
+.box-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+.box-col-title {
   font-family: "Cormorant Garamond", serif;
-  font-size: 0.95rem;
-  font-weight: 600;
-  line-height: 22px;
-  color: #32483a;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #7a5a10;
   text-align: center;
+  line-height: 1.3;
+  letter-spacing: 0.04em;
+  writing-mode: vertical-rl;
+}
+
+.box-col-seats {
+  display: grid;
+  grid-template-columns: repeat(2, 18px);
+  gap: 3px;
 }
 
 .seats {
   display: grid;
-  grid-template-columns: repeat(16, 21px);
-  grid-auto-rows: 21px;
-  gap: 6px;
+  grid-template-columns: 18px repeat(31, 18px) 18px;
+  gap: 3px;
   justify-content: center;
 }
 
+.row-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: #32483a;
+}
+
+.section-header {
+  grid-column: 1 / -1;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  border-radius: 3px;
+  margin-top: 2px;
+}
+
+.section-header.section-orchestra { background: rgba(160, 200, 235, 0.25); color: #1a4a7a; }
+.section-header.section-mezzanine { background: rgba(230, 180, 145, 0.25); color: #7a3a18; }
+.section-header.section-balcony   { background: rgba(145, 205, 145, 0.25); color: #1a5a28; }
+
 .seat {
-  width: 21px;
-  height: 21px;
+  width: 18px;
+  height: 18px;
   border: 0;
-  border-radius: 4px;
-  background: var(--accent);
+  border-radius: 3px;
   cursor: pointer;
-  transition: transform 0.15s ease, filter 0.15s ease;
+  color: #142018;
+  font-size: 0.48rem;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+  transition: transform 0.12s ease, filter 0.12s ease;
 }
 
 .seat:hover {
   transform: translateY(-1px);
-  filter: brightness(1.05);
+  filter: brightness(1.1);
 }
 
+.seat.section-orchestra { background: #8bbbd8; }
+.seat.section-mezzanine { background: #d4926a; }
+.seat.section-balcony   { background: #7dba7d; }
+.seat.section-box       { background: #d4b84a; }
+
 .seat.selected {
-  background: var(--accent-2);
+  background: var(--accent-2) !important;
 }
 
 .seat.unavailable {
-  background: var(--muted-seat);
+  background: var(--muted-seat) !important;
   cursor: not-allowed;
 }
 
@@ -543,6 +594,7 @@ input {
   visibility: hidden;
   pointer-events: none;
 }
+
 
 .legend {
   display: grid;
@@ -564,17 +616,12 @@ input {
   display: inline-block;
 }
 
-.legend-box.available {
-  background: var(--accent);
-}
-
-.legend-box.unavailable {
-  background: var(--muted-seat);
-}
-
-.legend-box.selected {
-  background: var(--accent-2);
-}
+.legend-box.orchestra  { background: #8bbbd8; }
+.legend-box.mezzanine  { background: #d4926a; }
+.legend-box.balcony    { background: #7dba7d; }
+.legend-box.box-seat   { background: #d4b84a; }
+.legend-box.selected   { background: var(--accent-2); }
+.legend-box.unavailable { background: var(--muted-seat); }
 
 .management-panel {
   margin-top: 22px;
@@ -798,23 +845,7 @@ tbody td {
   }
 
   .seat-board {
-    padding: 18px 10px 14px;
-  }
-
-  .seat-layout {
-    grid-template-columns: 18px minmax(0, 1fr) 18px;
-    gap: 8px;
-  }
-
-  .seats {
-    grid-template-columns: repeat(16, minmax(14px, 1fr));
-    gap: 5px;
-  }
-
-  .seat {
-    width: 100%;
-    aspect-ratio: 1;
-    height: auto;
+    padding: 14px 8px 12px;
   }
 
   .management-header {

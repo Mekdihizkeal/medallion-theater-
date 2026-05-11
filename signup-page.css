@@ -60,6 +60,8 @@ input {
 
 .top-logo img {
   width: 188px;
+  transform: scale(1.15);
+  transform-origin: left center;
 }
 
 .login-link {

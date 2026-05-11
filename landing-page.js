@@ -10,8 +10,8 @@ function showToast(message) {
   }, 1800);
 }
 
-document.querySelectorAll(".nav-links a, .hero-actions a, .path-card a").forEach((link) => {
+document.querySelectorAll(".movie-overlay a").forEach((link) => {
   link.addEventListener("click", () => {
-    showToast(`${link.textContent.trim()} opened.`);
+    showToast(`${link.closest(".movie-overlay").querySelector("h2").textContent} selected.`);
   });
 });

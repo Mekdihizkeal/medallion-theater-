@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Box Office Manager</title>
+    <link rel="stylesheet" href="boxoffice.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <aside class="sidebar">
+        <div>
+          <div class="logo">
+            <a href="index.html" aria-label="Go to home page"><img src="images/medallion-logo.png" alt="The Medallion Theatre logo" /></a>
+          </div>
+
+          <div class="manager">
+            <div class="manager-avatar">BO</div>
+            <h3>Box Office</h3>
+          </div>
+
+          <nav class="menu">
+            <button class="menu-item active" type="button">
+              <span class="menu-symbol">[]</span>
+              Manage Show
+            </button>
+            <a href="admin .html" class="menu-item admin-link">
+              <span class="menu-symbol">A</span>
+              Back To Admin
+            </a>
+          </nav>
+        </div>
+
+        <div class="logout">
+          <button class="menu-item" id="logoutBtn" type="button">
+            <span class="menu-symbol">&lt;</span>
+            Logout
+          </button>
+        </div>
+      </aside>
+
+      <main class="content">
+        <div class="topbar">
+          <h1>MANAGE SHOW</h1>
+          <div class="topbar-actions">
+            <a class="report-btn admin-open-btn" href="admin .html">Admin</a>
+            <button class="report-btn" id="salesReportBtn" type="button">Report Sales</button>
+          </div>
+        </div>
+
+        <section class="manage-card">
+          <form class="show-form" id="showForm">
+            <input type="text" id="movieName" placeholder="Movie name" />
+            <input type="text" id="showDate" placeholder="Date" />
+            <input type="text" id="showTime" placeholder="Time" />
+            <button type="submit">Add Movie</button>
+          </form>
+
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Movie</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Seats Sold</th>
+                  <th>Seats Available</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="showsTableBody"></tbody>
+            </table>
+          </div>
+
+          <div class="sales-report" id="salesReport"></div>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast" id="toast" hidden></div>
+    <script src="boxoffice.js"></script>
+  </body>
+</html>

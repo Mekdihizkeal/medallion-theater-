@@ -14,94 +14,62 @@
   </head>
   <body>
     <main class="landing-shell">
-      <section class="hero-panel">
-        <header class="hero-nav">
-          <a href="index.html" class="brand">
-            <img src="images/logo-top.png" alt="The Medallion Theatre logo" />
-          </a>
+      <header class="landing-header">
+        <a href="index.html" class="brand" aria-label="The Medallion Theatre home">
+          <img src="images/medallion-logo.png" alt="The Medallion Theatre logo" />
+        </a>
+        <nav class="landing-actions" aria-label="Account links">
+          <a class="admin-link" href="login-page.html">User Login</a>
+          <a class="admin-link" href="signup-page.html">Sign Up</a>
+          <a class="admin-link" href="login-page.html?role=admin">Admin Login</a>
+        </nav>
+      </header>
 
-          <nav class="nav-links">
-            <a href="medallion.html">Book Seats</a>
-            <a href="tickets-page.html">Tickets</a>
-            <a href="login-page.html">Admin Login</a>
-            <a href="signup-page.html">Create Account</a>
-          </nav>
-        </header>
-
-        <div class="hero-grid">
-          <section class="hero-copy">
-            <p class="eyebrow">The Medallion Theatre</p>
-            <h1>Step Into Stories Worth Dressing Up For.</h1>
-            <p class="summary">
-              Browse performances, reserve your seats, manage your theatre account, and move through the full Medallion experience from one place.
-            </p>
-
-            <div class="hero-actions">
-              <a href="medallion.html" class="primary-btn">Book A Show</a>
-              <a href="signup-page.html" class="secondary-btn">Join The Theatre</a>
-            </div>
-
-            <div class="feature-row">
-              <article>
-                <strong>Live Booking</strong>
-                <span>Choose dates, seats, and checkout flow.</span>
-              </article>
-              <article>
-                <strong>Member Access</strong>
-                <span>Login and manage your account dashboard.</span>
-              </article>
-              <article>
-                <strong>Curated Plays</strong>
-                <span>Featured posters and theatre management views.</span>
-              </article>
-            </div>
-          </section>
-
-          <section class="hero-visual">
-            <div class="visual-stack">
-              <article class="poster-card poster-main">
-                <img src="images/poster.png" alt="Dear England poster" />
-              </article>
-              <article class="poster-card poster-side">
-                <img src="images/macbeth-card.png" alt="Macbeth poster" />
-              </article>
-              <article class="poster-card poster-bottom">
-                <img src="images/rabbit-hole-card.png" alt="Rabbit Hole poster" />
-              </article>
-            </div>
-          </section>
-        </div>
+      <section class="movie-hero">
+        <p class="eyebrow">Now Showing</p>
+        <h1>Choose A Movie</h1>
       </section>
 
-      <section class="path-panel">
-        <article class="path-card">
-          <h2>Guest Path</h2>
-          <p>Start from the public theatre booking view and move through the event flow.</p>
-          <a href="medallion.html">Open Booking Page</a>
+      <section class="movie-grid" aria-label="Available movies">
+        <article class="movie-tile">
+          <img src="images/poster.png" alt="Dear England movie poster" />
+          <div class="movie-overlay">
+            <h2>Dear England</h2>
+            <p>A sharp sports drama about pressure, belief, and rebuilding a team from the inside.</p>
+            <a href="medallion.html?movie=Dear%20England">Proceed</a>
+          </div>
         </article>
 
-        <article class="path-card">
-          <h2>Member Path</h2>
-          <p>Sign up first, then move into the account and admin experience.</p>
-          <a href="signup-page.html">Open Sign Up Page</a>
+        <article class="movie-tile">
+          <img src="images/macbeth-card.png" alt="Macbeth movie poster" />
+          <div class="movie-overlay">
+            <h2>Macbeth</h2>
+            <p>A dark classic of ambition, loyalty, prophecy, and the cost of chasing power.</p>
+            <a href="medallion.html?movie=Macbeth">Proceed</a>
+          </div>
         </article>
 
-        <article class="path-card">
-          <h2>Admin Path</h2>
-          <p>Jump directly into the login and dashboard flow for theatre management.</p>
-          <a href="login-page.html">Open Login Page</a>
+        <article class="movie-tile">
+          <img src="images/rabbit-hole-card.png" alt="Rabbit Hole movie poster" />
+          <div class="movie-overlay">
+            <h2>Rabbit Hole</h2>
+            <p>An intimate story about grief, family, and finding a way back toward ordinary life.</p>
+            <a href="medallion.html?movie=Rabbit%20Hole">Proceed</a>
+          </div>
         </article>
 
-        <article class="path-card">
-          <h2>Tickets Path</h2>
-          <p>Review patron ticket activity and use the verification form to finalize collection.</p>
-          <a href="tickets-page.html">Open Tickets Page</a>
+        <article class="movie-tile">
+          <img src="images/green-card.png" alt="Green Shadow movie poster" />
+          <div class="movie-overlay">
+            <h2>Green Shadow</h2>
+            <p>A mysterious adventure where secrets, memory, and courage collide on stage.</p>
+            <a href="medallion.html?movie=Green%20Shadow">Proceed</a>
+          </div>
         </article>
       </section>
     </main>
 
     <div class="toast" id="toast" hidden></div>
-
     <script src="landing-page.js"></script>
   </body>
 </html>
