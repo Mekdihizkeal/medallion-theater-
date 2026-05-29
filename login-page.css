@@ -792,6 +792,36 @@ a {
   padding: 0 12px;
 }
 
+.system-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.system-card {
+  display: grid;
+  gap: 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(255, 253, 248, 0.92);
+  padding: 16px;
+}
+
+.system-card span {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.system-card select {
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fffdf8;
+  color: var(--ink);
+  padding: 0 12px;
+}
+
 .admin-table-wrap {
   overflow-x: auto;
   border: 1px solid var(--line);
@@ -953,7 +983,8 @@ a {
 
   .stat-row,
   .poster-row,
-  .show-form {
+  .show-form,
+  .system-grid {
     grid-template-columns: 1fr;
   }
 }

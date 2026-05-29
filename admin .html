@@ -44,7 +44,7 @@
                   <path d="M7 3v3M17 3v3M4 8h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" />
                 </svg>
               </span>
-              <span>Manage Shows</span>
+              <span>Manage System</span>
             </button>
             <a href="boxoffice.html" class="menu-link boxoffice-link">
               <span class="menu-icon">
@@ -106,37 +106,60 @@
 
           <section class="admin-panel-view" data-admin-content="shows" hidden>
             <div class="admin-toolbar">
-              <h2>System Shows</h2>
+              <h2>System Management</h2>
               <div class="toolbar-actions">
                 <a href="boxoffice.html" class="small-action action-link">Open Box Office</a>
-                <button type="button" class="small-action" id="adminReportBtn">Report Sales</button>
+                <button type="button" class="small-action" id="saveSystemBtn">Save System</button>
               </div>
             </div>
 
-            <form class="show-form" id="adminShowForm">
-              <input type="text" id="adminMovieName" placeholder="Movie name" />
-              <input type="text" id="adminShowDate" placeholder="Date" />
-              <input type="text" id="adminShowTime" placeholder="Time" />
-              <button type="submit">Add Show</button>
-            </form>
-
-            <div class="admin-table-wrap">
-              <table class="admin-table">
-                <thead>
-                  <tr>
-                    <th>Movie</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Sold</th>
-                    <th>Available</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody id="adminShowsTableBody"></tbody>
-              </table>
+            <div class="system-grid">
+              <label class="system-card">
+                <span>Booking System</span>
+                <select id="bookingSystem">
+                  <option value="enabled">Enabled</option>
+                  <option value="disabled">Disabled</option>
+                </select>
+              </label>
+              <label class="system-card">
+                <span>User Sign Up</span>
+                <select id="signupSystem">
+                  <option value="enabled">Enabled</option>
+                  <option value="disabled">Disabled</option>
+                </select>
+              </label>
+              <label class="system-card">
+                <span>Bank Payment</span>
+                <select id="bankPaymentSystem">
+                  <option value="enabled">Enabled</option>
+                  <option value="disabled">Disabled</option>
+                </select>
+              </label>
+              <label class="system-card">
+                <span>Ticket Verification</span>
+                <select id="ticketVerificationSystem">
+                  <option value="enabled">Enabled</option>
+                  <option value="disabled">Disabled</option>
+                </select>
+              </label>
+              <label class="system-card">
+                <span>Maintenance Mode</span>
+                <select id="maintenanceSystem">
+                  <option value="off">Off</option>
+                  <option value="on">On</option>
+                </select>
+              </label>
+              <label class="system-card">
+                <span>Active Payment Method</span>
+                <select id="paymentSystem">
+                  <option value="Bank Transfer">Bank Transfer</option>
+                  <option value="Bank Card">Bank Card</option>
+                  <option value="Mobile Banking">Mobile Banking</option>
+                </select>
+              </label>
             </div>
 
-            <div class="admin-report" id="adminSalesReport"></div>
+            <div class="admin-report" id="systemStatusReport"></div>
           </section>
         </div>
       </section>

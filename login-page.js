@@ -108,9 +108,7 @@ document.querySelectorAll(".social-btn").forEach((button) => {
 
 const adminHeading = document.getElementById("adminHeading");
 const usersTableBody = document.getElementById("usersTableBody");
-const adminShowsTableBody = document.getElementById("adminShowsTableBody");
-const adminShowForm = document.getElementById("adminShowForm");
-const adminSalesReport = document.getElementById("adminSalesReport");
+const systemStatusReport = document.getElementById("systemStatusReport");
 
 const defaultUsers = [
   { id: "U001", name: "Alice Morgan", email: "alice@example.com", role: "Customer", tickets: 4 },
@@ -119,22 +117,25 @@ const defaultUsers = [
   { id: "U004", name: "Nina Patel", email: "nina@example.com", role: "Customer", tickets: 5 }
 ];
 
-const defaultShows = [
-  { movie: "Dear England", date: "May 11, 2026", time: "7:00 PM", sold: 11, available: 665, revenue: 715 },
-  { movie: "Macbeth", date: "May 12, 2026", time: "8:00 PM", sold: 8, available: 668, revenue: 520 },
-  { movie: "Rabbit Hole", date: "May 13, 2026", time: "6:30 PM", sold: 6, available: 670, revenue: 390 }
-];
+const defaultSystemSettings = {
+  bookingSystem: "enabled",
+  signupSystem: "enabled",
+  bankPaymentSystem: "enabled",
+  ticketVerificationSystem: "enabled",
+  maintenanceSystem: "off",
+  paymentSystem: "Bank Transfer"
+};
 
-function readShows() {
+function readSystemSettings() {
   try {
-    return JSON.parse(localStorage.getItem("medallionShows")) || defaultShows;
+    return { ...defaultSystemSettings, ...JSON.parse(localStorage.getItem("medallionSystemSettings")) };
   } catch {
-    return defaultShows;
+    return defaultSystemSettings;
   }
 }
 
-function saveShows(shows) {
-  localStorage.setItem("medallionShows", JSON.stringify(shows));
+function saveSystemSettings(settings) {
+  localStorage.setItem("medallionSystemSettings", JSON.stringify(settings));
 }
 
 function renderUsers() {
@@ -144,23 +145,26 @@ function renderUsers() {
     .join("");
 }
 
-function renderShows() {
-  if (!adminShowsTableBody) return;
-  const shows = readShows();
-  adminShowsTableBody.innerHTML = shows
-    .map(
-      (show, index) => `
-        <tr>
-          <td>${show.movie}</td>
-          <td>${show.date}</td>
-          <td>${show.time}</td>
-          <td>${show.sold}</td>
-          <td>${show.available}</td>
-          <td><button type="button" class="danger-btn" data-remove-show="${index}">Remove</button></td>
-        </tr>
-      `
-    )
-    .join("");
+function renderSystemSettings() {
+  const settings = readSystemSettings();
+  Object.entries(settings).forEach(([id, value]) => {
+    const field = document.getElementById(id);
+    if (field) field.value = value;
+  });
+  renderSystemStatus(settings);
+}
+
+function renderSystemStatus(settings = readSystemSettings()) {
+  if (!systemStatusReport) return;
+  systemStatusReport.innerHTML = `
+    <h3>System Status</h3>
+    <p>Booking: <strong>${settings.bookingSystem}</strong></p>
+    <p>User sign up: <strong>${settings.signupSystem}</strong></p>
+    <p>Bank payment: <strong>${settings.bankPaymentSystem}</strong></p>
+    <p>Ticket verification: <strong>${settings.ticketVerificationSystem}</strong></p>
+    <p>Maintenance mode: <strong>${settings.maintenanceSystem}</strong></p>
+    <p>Payment method: <strong>${settings.paymentSystem}</strong></p>
+  `;
 }
 
 document.querySelectorAll("[data-admin-panel]").forEach((button) => {
@@ -168,7 +172,7 @@ document.querySelectorAll("[data-admin-panel]").forEach((button) => {
     document.querySelector("[data-admin-panel].active")?.classList.remove("active");
     button.classList.add("active");
     const panel = button.dataset.adminPanel;
-    adminHeading.textContent = panel === "users" ? "MANAGE USERS" : "MANAGE SHOWS";
+    adminHeading.textContent = panel === "users" ? "MANAGE USERS" : "MANAGE SYSTEM";
     document.querySelectorAll("[data-admin-content]").forEach((content) => {
       content.hidden = content.dataset.adminContent !== panel;
     });
@@ -180,41 +184,19 @@ document.getElementById("refreshUsersBtn")?.addEventListener("click", () => {
   showToast("User database pulled.");
 });
 
-adminShowForm?.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const movie = document.getElementById("adminMovieName").value.trim();
-  const date = document.getElementById("adminShowDate").value.trim();
-  const time = document.getElementById("adminShowTime").value.trim();
-  if (!movie || !date || !time) {
-    showToast("Enter movie, date, and time.");
-    return;
-  }
-  const shows = readShows();
-  shows.push({ movie, date, time, sold: 0, available: 676, revenue: 0 });
-  saveShows(shows);
-  adminShowForm.reset();
-  renderShows();
-  showToast(`${movie} added.`);
-});
-
-adminShowsTableBody?.addEventListener("click", (event) => {
-  const removeButton = event.target.closest("[data-remove-show]");
-  if (!removeButton) return;
-  const shows = readShows();
-  const [removed] = shows.splice(Number(removeButton.dataset.removeShow), 1);
-  saveShows(shows);
-  renderShows();
-  showToast(`${removed.movie} removed.`);
-});
-
-document.getElementById("adminReportBtn")?.addEventListener("click", () => {
-  const shows = readShows().map((show) => ({ ...show, revenue: Number(show.revenue) || (Number(show.sold) || 0) * 65 }));
-  const sold = shows.reduce((sum, show) => sum + Number(show.sold), 0);
-  const available = shows.reduce((sum, show) => sum + Number(show.available), 0);
-  const totalRevenue = shows.reduce((sum, show) => sum + Number(show.revenue), 0);
-  adminSalesReport.innerHTML = `<h3>Sales Report</h3><p>Total revenue: <strong>$${totalRevenue}</strong></p><p>Total seats sold: <strong>${sold}</strong></p><p>Total seats available: <strong>${available}</strong></p>`;
-  showToast("Sales report generated.");
+document.getElementById("saveSystemBtn")?.addEventListener("click", () => {
+  const settings = {
+    bookingSystem: document.getElementById("bookingSystem").value,
+    signupSystem: document.getElementById("signupSystem").value,
+    bankPaymentSystem: document.getElementById("bankPaymentSystem").value,
+    ticketVerificationSystem: document.getElementById("ticketVerificationSystem").value,
+    maintenanceSystem: document.getElementById("maintenanceSystem").value,
+    paymentSystem: document.getElementById("paymentSystem").value
+  };
+  saveSystemSettings(settings);
+  renderSystemStatus(settings);
+  showToast("System settings saved.");
 });
 
 renderUsers();
-renderShows();
+renderSystemSettings();

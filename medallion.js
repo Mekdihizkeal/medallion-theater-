@@ -65,11 +65,11 @@ const layout = [
   ["DD", balRow(14), "balcony"], ["EE", balRow(12), "balcony"], ["FF", balRow(12), "balcony"],
 ];
 
-const lockedSeats = new Set(["A4", "A5", "B8", "D12", "G6", "H7", "AA4", "X11"]);
+let lockedSeats = new Set();
 const dateButtons = Array.from(document.querySelectorAll(".date-card"));
 let visibleDateStart = 0;
 let selectedDateIndex = 2;
-let selectedSeats = ["H1", "H2", "H3"];
+let selectedSeats = [];
 let toastTimer;
 
 function showToast(message) {
@@ -103,6 +103,26 @@ function updateSelection() {
   });
 
   updatePricing();
+}
+
+function getChosenDate() {
+  const chosenDate = allDates[selectedDateIndex];
+  return `${chosenDate.month} ${chosenDate.day}, 2026`;
+}
+
+function getSelectedPerformance() {
+  return {
+    movie: selectedMovie,
+    date: getChosenDate(),
+    time: "7:00 PM"
+  };
+}
+
+function refreshSeatAvailability() {
+  lockedSeats = new Set(MedallionReservationDB.getReservedSeats(getSelectedPerformance()));
+  selectedSeats = selectedSeats.filter((seat) => !lockedSeats.has(seat));
+  updateSelection();
+  renderSeats();
 }
 
 function renderSeats() {
@@ -229,6 +249,7 @@ function setActiveDate(nextIndex) {
   }
 
   updateDateButtons();
+  refreshSeatAvailability();
   showToast(`Showtime updated to ${allDates[selectedDateIndex].month} ${allDates[selectedDateIndex].day}.`);
 }
 
@@ -285,19 +306,23 @@ purchaseBtn.addEventListener("click", () => {
     return;
   }
 
-  const chosenDate = allDates[selectedDateIndex];
   const total = totalPrice.textContent;
   const booking = {
     movie: selectedMovie,
-    date: `${chosenDate.month} ${chosenDate.day}, 2026`,
+    date: getChosenDate(),
     time: "7:00 PM",
     seats: selectedSeats,
     total,
-    paymentMethod: "Bank Transfer",
-    soldSeats: Array.from(new Set([...lockedSeats, ...selectedSeats])),
-    availableSeats: Math.max(0, 676 - lockedSeats.size - selectedSeats.length)
+    paymentMethod: "Bank Transfer"
   };
-  localStorage.setItem("medallionLatestBooking", JSON.stringify(booking));
+
+  const result = MedallionReservationDB.reserveSeats(booking);
+  if (!result.ok) {
+    refreshSeatAvailability();
+    showToast(`Seat already reserved: ${result.conflicts.join(", ")}.`);
+    return;
+  }
+
   const orderSummary = [`${selectedMovie}`, `Seats: ${selectedSeats.join(", ")}`, `Total: ${total}`];
 
   showToast(orderSummary.join(" | "));
@@ -309,6 +334,11 @@ purchaseBtn.addEventListener("click", () => {
 movieTitle.textContent = selectedMovie;
 moviePoster.src = MOVIE_POSTERS[selectedMovie] || MOVIE_POSTERS["Dear England"];
 moviePoster.alt = `${selectedMovie} poster`;
-renderSeats();
 updateDateButtons();
-updateSelection();
+refreshSeatAvailability();
+
+window.addEventListener("storage", (event) => {
+  if (event.key === "medallionReservationDatabase") {
+    refreshSeatAvailability();
+  }
+});

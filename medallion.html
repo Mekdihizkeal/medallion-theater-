@@ -99,17 +99,13 @@
 
                 <article class="selected-card">
                   <h3>Your Selected Seats</h3>
-                  <p class="seat-count"><span id="seatCount">3</span> Seats</p>
+                  <p class="seat-count"><span id="seatCount">0</span> Seats</p>
 
-                  <div class="selected-seat-tags" id="selectedSeatTags">
-                    <button type="button" class="seat-pill active" data-seat="H1">H1</button>
-                    <button type="button" class="seat-pill active" data-seat="H2">H2</button>
-                    <button type="button" class="seat-pill active" data-seat="H3">H3</button>
-                  </div>
+                  <div class="selected-seat-tags" id="selectedSeatTags"></div>
 
                   <div class="total-row">
                     <span>Total</span>
-                    <strong id="totalPrice">$300</strong>
+                    <strong id="totalPrice">$0</strong>
                   </div>
 
                   <div class="actions">
@@ -193,6 +189,7 @@
 
     <div class="toast" id="toast" hidden></div>
 
+    <script src="reservation-db.js"></script>
     <script src="medallion.js"></script>
   </body>
 </html>
